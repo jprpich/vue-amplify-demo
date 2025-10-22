@@ -12,17 +12,29 @@ const callApi = async () => {
   apiResponse.value = null
 
   try {
-    // Import amplify_outputs to get the API endpoint
-    const outputs = await import('../../amplify_outputs.json')
-
-    // Get the custom API endpoint
-    const apiEndpoint = outputs?.default?.custom?.API?.endpoint
-
-    if (!apiEndpoint) {
+    // Load amplify_outputs to get the API endpoint
+    // Using fetch to avoid build-time errors if file doesn't exist
+    let outputs
+    try {
+      const response = await fetch('/amplify_outputs.json')
+      if (!response.ok) {
+        throw new Error('Config file not found')
+      }
+      outputs = await response.json()
+    } catch (importError) {
       throw new Error(
-        'API endpoint not configured. Make sure sandbox is running and amplify_outputs.json exists.',
+        'API configuration not found. Make sure the Amplify backend is deployed. Run "npm run sandbox" for local development.',
       )
     }
+
+    // Get the custom API endpoint
+    const apiEndpoint = outputs?.custom?.API?.endpoint
+
+    if (!apiEndpoint) {
+      throw new Error('API endpoint not found in configuration.')
+    }
+
+    console.log('Calling API at:', apiEndpoint)
 
     // Call the API directly using fetch
     const response = await fetch(`${apiEndpoint}hello`)

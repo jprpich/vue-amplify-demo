@@ -2,6 +2,16 @@
 
 This guide will walk you through deploying your Vue app with a serverless REST API to AWS Amplify.
 
+## ⚡ Quick Summary
+
+Your app now includes:
+
+- ✅ REST API with Lambda function (GET /hello endpoint)
+- ✅ API Gateway for routing
+- ✅ CORS enabled for browser access
+- ✅ Automatic backend/frontend deployment
+- ✅ Build process that works with or without backend deployed
+
 ## 📋 Prerequisites
 
 - AWS Account (free tier works!)
@@ -50,7 +60,8 @@ Visit http://localhost:5173 and click the "Call API" button on the home page to 
    - Go to [AWS Amplify Console](https://console.aws.amazon.com/amplify/)
    - Click "New app" → "Host web app"
    - Select your GitHub repository
-   - Amplify will auto-detect the build settings
+   - Amplify will auto-detect the build settings from `amplify.yml`
+   - **Important**: Make sure to grant Amplify permissions to deploy backend resources
 
 3. **Configure Build Settings:**
    Amplify should auto-detect these settings, but verify:

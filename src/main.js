@@ -6,16 +6,25 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-// Configure Amplify (will be auto-generated when you run the sandbox)
+// Configure Amplify
 import { Amplify } from 'aws-amplify'
 
-// Try to import the generated config, if it exists
-try {
-  const outputs = await import('../amplify_outputs.json')
-  Amplify.configure(outputs.default)
-} catch {
-  console.log('Amplify config not found - run "npx ampx sandbox" to generate it')
+// Dynamically load the Amplify config if it exists
+// Using fetch instead of import to avoid build-time errors
+const configureAmplify = async () => {
+  try {
+    const response = await fetch('/amplify_outputs.json')
+    if (response.ok) {
+      const outputs = await response.json()
+      Amplify.configure(outputs)
+      console.log('✅ Amplify configured successfully')
+    }
+  } catch (error) {
+    console.log('⚠️ Amplify config not found - run "npx ampx sandbox" to generate it')
+  }
 }
+
+configureAmplify()
 
 const app = createApp(App)
 
