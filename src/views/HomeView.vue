@@ -9,6 +9,7 @@ const error = ref(null)
 // Contact form state
 const contactForm = ref({
   name: '',
+  email: '',
   message: '',
 })
 const contactLoading = ref(false)
@@ -91,6 +92,7 @@ const submitContact = async () => {
       },
       body: JSON.stringify({
         name: contactForm.value.name,
+        email: contactForm.value.email,
         message: contactForm.value.message,
       }),
     })
@@ -104,6 +106,7 @@ const submitContact = async () => {
     contactSuccess.value = data
     // Clear form on success
     contactForm.value.name = ''
+    contactForm.value.email = ''
     contactForm.value.message = ''
   } catch (err) {
     contactError.value = err.message || 'Failed to submit contact form'
@@ -149,6 +152,11 @@ const submitContact = async () => {
             placeholder="Enter your name"
             required
           />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email (optional):</label>
+          <input id="email" v-model="contactForm.email" type="email" placeholder="your@email.com" />
         </div>
 
         <div class="form-group">

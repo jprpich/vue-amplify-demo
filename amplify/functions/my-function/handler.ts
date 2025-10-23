@@ -1,4 +1,14 @@
 import type { APIGatewayProxyHandler } from 'aws-lambda'
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
+import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb'
+
+// Initialize DynamoDB client
+const client = new DynamoDBClient({})
+const docClient = DynamoDBDocumentClient.from(client)
+
+// Get table name from environment variable (set by Amplify)
+// @ts-ignore
+const tableName = process.env.CONTACT_TABLE_NAME
 
 export const handler: APIGatewayProxyHandler = async (event) => {
   console.log('Event:', event)
@@ -29,7 +39,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     try {
       // Parse the request body
       const body = event.body ? JSON.parse(event.body) : {}
-      const { name, message } = body
+      const { name, message, email } = body
 
       // Validate required fields
       if (!name || !message) {
@@ -46,8 +56,26 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         }
       }
 
-      // Here you could save to database, send email, etc.
-      // For now, we'll just return a confirmation
+      // Save to DynamoDB
+      const timestamp = new Date().toISOString()
+      const contactId = `${Date.now()}-${Math.random().toString(36).substring(7)}`
+
+      const command = new PutCommand({
+        TableName: tableName,
+        Item: {
+          id: contactId,
+          name,
+          message,
+          email: email || null,
+          createdAt: timestamp,
+          updatedAt: timestamp,
+          __typename: 'Contact',
+        },
+      })
+
+      await docClient.send(command)
+
+      // Return success response
       return {
         statusCode: 200,
         headers: {
@@ -56,15 +84,18 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         },
         body: JSON.stringify({
           success: true,
-          message: `Thanks for your message, ${name}!`,
-          received: {
+          message: `Thanks for your message, ${name}! We've saved it to our database.`,
+          saved: {
+            id: contactId,
             name,
             message,
-            timestamp: new Date().toISOString(),
+            email,
+            timestamp,
           },
         }),
       }
     } catch (error) {
+      console.error('Error saving to DynamoDB:', error)
       return {
         statusCode: 500,
         headers: {
