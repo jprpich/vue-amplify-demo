@@ -7,7 +7,6 @@ const client = new DynamoDBClient({})
 const docClient = DynamoDBDocumentClient.from(client)
 
 // Get table name from environment variable (set by Amplify)
-// @ts-ignore
 const tableName = process.env.CONTACT_TABLE_NAME
 
 export const handler: APIGatewayProxyHandler = async (event) => {
