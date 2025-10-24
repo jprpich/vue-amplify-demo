@@ -5,8 +5,6 @@ import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
-
-const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
 </script>
 
 <template>
@@ -14,82 +12,66 @@ const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
     <template #icon>
       <DocumentationIcon />
     </template>
-    <template #heading>Documentation</template>
+    <template #heading>AWS Amplify Gen 2</template>
 
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
+    This demo showcases
+    <a href="https://docs.amplify.aws/" target="_blank" rel="noopener">AWS Amplify Gen 2</a>, a
+    modern full-stack development platform. Amplify automatically provisions and configures AWS
+    services including Lambda, API Gateway, DynamoDB, and more - all from code-first TypeScript
+    definitions.
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
       <ToolingIcon />
     </template>
-    <template #heading>Tooling</template>
+    <template #heading>Serverless REST API</template>
 
-    This project is served and bundled with
-    <a href="https://vite.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a>
-    +
-    <a href="https://github.com/vuejs/language-tools" target="_blank" rel="noopener"
-      >Vue - Official</a
-    >. If you need to test your components and web pages, check out
-    <a href="https://vitest.dev/" target="_blank" rel="noopener">Vitest</a>
-    and
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a>
-    /
-    <a href="https://playwright.dev/" target="_blank" rel="noopener">Playwright</a>.
-
-    <br />
-
-    More instructions are available in
-    <a href="javascript:void(0)" @click="openReadmeInEditor"><code>README.md</code></a
-    >.
+    The backend uses
+    <a href="https://aws.amazon.com/lambda/" target="_blank" rel="noopener">AWS Lambda</a>
+    functions behind
+    <a href="https://aws.amazon.com/api-gateway/" target="_blank" rel="noopener">API Gateway</a>
+    to handle requests. Try the <strong>API Test</strong> and <strong>Contact</strong> pages to see
+    serverless functions in action - no server management required!
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
       <EcosystemIcon />
     </template>
-    <template #heading>Ecosystem</template>
+    <template #heading>DynamoDB Integration</template>
 
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener">Vue Test Utils</a>, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener">Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
-    a visit.
+    Data is stored in
+    <a href="https://aws.amazon.com/dynamodb/" target="_blank" rel="noopener">Amazon DynamoDB</a>, a
+    fully managed NoSQL database. The contact form submissions are automatically saved to a DynamoDB
+    table with millisecond latency and automatic scaling. Amplify handles all the IAM permissions
+    and table configuration.
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
       <CommunityIcon />
     </template>
-    <template #heading>Community</template>
+    <template #heading>S3 & CloudFront Hosting</template>
 
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>
-    (our official Discord server), or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also follow the official
-    <a href="https://bsky.app/profile/vuejs.org" target="_blank" rel="noopener">@vuejs.org</a>
-    Bluesky account or the
-    <a href="https://x.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    X account for latest news in the Vue world.
+    This Vue app is hosted on
+    <a href="https://aws.amazon.com/s3/" target="_blank" rel="noopener">Amazon S3</a>
+    and distributed globally via
+    <a href="https://aws.amazon.com/cloudfront/" target="_blank" rel="noopener">CloudFront CDN</a>.
+    Amplify automatically handles build, deployment, and CDN invalidation. Your users get fast load
+    times from edge locations worldwide.
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
       <SupportIcon />
     </template>
-    <template #heading>Support Vue</template>
+    <template #heading>Infrastructure as Code</template>
 
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
+    Everything is defined in TypeScript using Amplify's
+    <a href="https://docs.amplify.aws/vue/build-a-backend/" target="_blank" rel="noopener"
+      >code-first approach</a
+    >. No manual AWS console clicking required. The entire stack - functions, database, API, and
+    hosting - is version controlled and deployed with a single command.
   </WelcomeItem>
 </template>
