@@ -10,63 +10,37 @@ const fetchContacts = async () => {
   error.value = null
 
   try {
-    // Load amplify_outputs to get the API configuration
+    // Load amplify_outputs to get the API endpoint
     const response = await fetch('/amplify_outputs.json')
     if (!response.ok) {
       throw new Error('API configuration not found. Make sure the Amplify backend is deployed.')
     }
     const outputs = await response.json()
 
-    const apiUrl = outputs?.data?.url
-    const apiKey = outputs?.data?.api_key
+    const apiEndpoint = outputs?.custom?.API?.endpoint
 
-    if (!apiUrl || !apiKey) {
-      throw new Error('AppSync API configuration not found.')
+    if (!apiEndpoint) {
+      throw new Error('API endpoint not found in configuration.')
     }
 
-    console.log('Fetching contacts from AppSync:', apiUrl)
+    console.log('Fetching contacts from REST API:', apiEndpoint)
 
-    // GraphQL query to list all contacts
-    const query = `
-      query ListContacts {
-        listContacts {
-          items {
-            id
-            name
-            email
-            message
-            createdAt
-            updatedAt
-          }
-        }
-      }
-    `
+    // Call REST API to get contacts
+    const apiResponse = await fetch(`${apiEndpoint}contacts`)
 
-    // Call AppSync GraphQL API
-    const graphqlResponse = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-      },
-      body: JSON.stringify({ query }),
-    })
+    console.log('API Response status:', apiResponse.status)
 
-    if (!graphqlResponse.ok) {
-      throw new Error(
-        `GraphQL API returned ${graphqlResponse.status}: ${graphqlResponse.statusText}`,
-      )
+    if (!apiResponse.ok) {
+      const errorText = await apiResponse.text()
+      console.error('API Error Response:', errorText)
+      throw new Error(`API returned ${apiResponse.status}: ${apiResponse.statusText}`)
     }
 
-    const result = await graphqlResponse.json()
+    const result = await apiResponse.json()
+    console.log('API Result:', result)
 
-    if (result.errors) {
-      throw new Error(result.errors[0].message)
-    }
-
-    contacts.value = result.data.listContacts.items
-    // Sort by newest first
-    contacts.value.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    contacts.value = result.contacts || []
+    console.log('Contacts loaded:', contacts.value.length)
   } catch (err) {
     error.value = err.message || 'Failed to fetch contacts'
     console.error('Error fetching contacts:', err)
@@ -136,12 +110,10 @@ const formatDate = (dateString) => {
       <div class="info-box" v-if="!loading && contacts.length > 0">
         <h4>💡 About This Data</h4>
         <ul>
-          <li>
-            Data is fetched from <strong>DynamoDB</strong> via <strong>AppSync GraphQL API</strong>
-          </li>
-          <li>Uses the <code>listContacts</code> query with API key authentication</li>
+          <li>Data is fetched from <strong>DynamoDB</strong> via <strong>REST API</strong></li>
+          <li>Uses the <code>GET /contacts</code> endpoint through API Gateway and Lambda</li>
           <li>Sorted by newest submissions first</li>
-          <li>Refresh anytime to see new submissions</li>
+          <li>Automatically loads when you visit this page</li>
         </ul>
       </div>
     </div>
