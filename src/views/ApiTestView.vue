@@ -117,11 +117,12 @@ const callApi = async () => {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  min-height: 100vh;
 }
 
 .test-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .test-header h1 {
@@ -131,16 +132,16 @@ const callApi = async () => {
 }
 
 .test-header p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--color-text);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .test-container {
   background: var(--color-background-soft);
   border-radius: 12px;
-  padding: 2.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .endpoint-info {
@@ -196,7 +197,6 @@ const callApi = async () => {
   border: 2px solid #ef4444;
   border-radius: 8px;
   color: #991b1b;
-  text-align: center;
 }
 
 .success {
@@ -205,9 +205,8 @@ const callApi = async () => {
 
 .success h3 {
   margin: 0 0 1rem 0;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #166534;
-  text-align: center;
 }
 
 .response-details {
@@ -272,14 +271,16 @@ const callApi = async () => {
 .info-box {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
+  padding: 2rem;
+  border-radius: 12px;
   margin-top: 2rem;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
 }
 
 .info-box h4 {
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .info-box ul {
@@ -289,7 +290,7 @@ const callApi = async () => {
 
 .info-box li {
   margin-bottom: 0.5rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .info-box li:last-child {
@@ -298,20 +299,41 @@ const callApi = async () => {
 
 @media (max-width: 768px) {
   .api-test-page {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .test-header {
+    margin-bottom: 2rem;
   }
 
   .test-header h1 {
     font-size: 2rem;
   }
 
+  .test-header p {
+    font-size: 1rem;
+  }
+
   .test-container {
-    padding: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  .endpoint-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .test-button {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
   }
 
   .response-item {
     flex-direction: column;
     gap: 0.25rem;
+  }
+
+  .info-box {
+    padding: 1.25rem;
   }
 }
 </style>

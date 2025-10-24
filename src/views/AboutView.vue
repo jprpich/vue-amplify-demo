@@ -134,9 +134,9 @@
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: var(--color-heading);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
@@ -238,10 +238,10 @@ h3 {
 .demo-note {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: 12px;
   margin-top: 3rem;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
 }
 
 .demo-note h2 {
@@ -251,7 +251,7 @@ h3 {
 }
 
 .demo-note p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 1rem;
 }
@@ -261,6 +261,10 @@ h3 {
 }
 
 @media (max-width: 768px) {
+  .about {
+    padding: 1rem 0.5rem;
+  }
+
   h1 {
     font-size: 2rem;
   }
@@ -270,21 +274,31 @@ h3 {
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   .intro-section,
   .stack-item,
   .demo-note {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .lead {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+  }
+
+  .stack-item li {
+    font-size: 0.95rem;
   }
 
   .workflow li {
     padding-left: 2.5rem;
+  }
+
+  .workflow li::before {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1rem;
   }
 }
 </style>

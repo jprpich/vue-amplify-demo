@@ -21,18 +21,29 @@ defineProps({
 <style scoped>
 h1 {
   font-weight: 500;
-  font-size: 2.6rem;
+  font-size: 2rem;
   position: relative;
   top: -10px;
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 .greetings h1,
 .greetings h3 {
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
 }
 
 @media (min-width: 1024px) {

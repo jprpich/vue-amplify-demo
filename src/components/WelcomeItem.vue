@@ -34,10 +34,16 @@ i {
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   margin-bottom: 0.4rem;
   color: var(--color-heading);
+}
+
+@media (min-width: 768px) {
+  h3 {
+    font-size: 1.2rem;
+  }
 }
 
 @media (min-width: 1024px) {

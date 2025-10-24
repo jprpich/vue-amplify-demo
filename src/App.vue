@@ -5,7 +5,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="./assets/logo.svg" />
 
     <div class="wrapper">
       <HelloWorld msg="Vue on Amplify" />
@@ -30,14 +30,16 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.5rem;
+  width: 100px;
+  height: 100px;
 }
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 nav a.router-link-exact-active {
@@ -50,12 +52,22 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   display: inline-block;
-  padding: 0 1rem;
+  padding: 0.5rem 0.75rem;
   border-left: 1px solid var(--color-border);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 nav a:first-of-type {
   border: 0;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    width: 125px;
+    height: 125px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -82,6 +94,10 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+
+  nav a {
+    padding: 0 1rem;
   }
 }
 </style>

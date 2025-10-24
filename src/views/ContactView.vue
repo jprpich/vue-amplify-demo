@@ -126,11 +126,12 @@ const submitContact = async () => {
   max-width: 700px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  min-height: 100vh;
 }
 
 .contact-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .contact-header h1 {
@@ -140,16 +141,16 @@ const submitContact = async () => {
 }
 
 .contact-header p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--color-text);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .contact-container {
   background: var(--color-background-soft);
   border-radius: 12px;
-  padding: 2.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .contact-form {
@@ -253,15 +254,33 @@ const submitContact = async () => {
 
 @media (max-width: 768px) {
   .contact-page {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .contact-header {
+    margin-bottom: 2rem;
   }
 
   .contact-header h1 {
     font-size: 2rem;
   }
 
+  .contact-header p {
+    font-size: 1rem;
+  }
+
   .contact-container {
-    padding: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
   }
 }
 </style>
