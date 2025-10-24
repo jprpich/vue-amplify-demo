@@ -27,7 +27,7 @@ import ServiceLogo from './ServiceLogo.vue'
     <a href="https://aws.amazon.com/lambda/" target="_blank" rel="noopener">AWS Lambda</a>
     functions behind
     <a href="https://aws.amazon.com/api-gateway/" target="_blank" rel="noopener">API Gateway</a>
-    to handle requests. Try the <strong>API Test</strong> and <strong>Contact</strong> pages to see
+    to handle requests. Try the <strong>API GET</strong> and <strong>API POST</strong> pages to see
     serverless functions in action - no server management required!
   </WelcomeItem>
 

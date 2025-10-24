@@ -67,11 +67,19 @@ const submitContact = async () => {
 <template>
   <main class="contact-page">
     <div class="contact-header">
-      <h1>📬 Get in Touch</h1>
-      <p>Have a question or want to reach out? Send us a message!</p>
+      <h1>📬 API POST Request</h1>
+      <p>Submit data to your serverless API and save it to DynamoDB</p>
     </div>
 
     <div class="contact-container">
+      <div class="endpoint-info">
+        <h3>POST /contact</h3>
+        <p>
+          This endpoint accepts contact form data and saves it to DynamoDB via your AWS Lambda
+          function.
+        </p>
+      </div>
+
       <form @submit.prevent="submitContact" class="contact-form">
         <div class="form-group">
           <label for="name">Name *</label>
@@ -151,6 +159,25 @@ const submitContact = async () => {
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.endpoint-info {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.endpoint-info h3 {
+  font-size: 1.5rem;
+  color: #00dc82;
+  font-family: 'Monaco', 'Courier New', monospace;
+  margin-bottom: 0.5rem;
+}
+
+.endpoint-info p {
+  color: var(--color-text);
+  opacity: 0.8;
 }
 
 .contact-form {
@@ -271,6 +298,10 @@ const submitContact = async () => {
 
   .contact-container {
     padding: 1.25rem;
+  }
+
+  .endpoint-info h3 {
+    font-size: 1.2rem;
   }
 
   .form-group input,

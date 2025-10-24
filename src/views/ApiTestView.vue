@@ -56,8 +56,8 @@ const callApi = async () => {
 <template>
   <main class="api-test-page">
     <div class="test-header">
-      <h1>🚀 API Test</h1>
-      <p>Test your serverless REST API endpoint</p>
+      <h1>🚀 API GET Request</h1>
+      <p>Test your serverless REST API with a GET endpoint</p>
     </div>
 
     <div class="test-container">

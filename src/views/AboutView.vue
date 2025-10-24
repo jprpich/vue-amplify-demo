@@ -113,8 +113,8 @@
           testing Amplify features, or using as a starter template for your own projects.
         </p>
         <p>
-          <strong>Try it out:</strong> Visit the <strong>API Test</strong> page to see Lambda in
-          action, or submit the <strong>Contact</strong> form to write data to DynamoDB!
+          <strong>Try it out:</strong> Visit the <strong>API GET</strong> page to see Lambda in
+          action, or submit the <strong>API POST</strong> form to write data to DynamoDB!
         </p>
       </div>
     </div>
