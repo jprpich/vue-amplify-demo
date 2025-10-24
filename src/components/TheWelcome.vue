@@ -1,16 +1,12 @@
 <script setup>
 import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+import ServiceLogo from './ServiceLogo.vue'
 </script>
 
 <template>
   <WelcomeItem>
     <template #icon>
-      <DocumentationIcon />
+      <ServiceLogo service="amplify" />
     </template>
     <template #heading>AWS Amplify Gen 2</template>
 
@@ -23,7 +19,7 @@ import SupportIcon from './icons/IconSupport.vue'
 
   <WelcomeItem>
     <template #icon>
-      <ToolingIcon />
+      <ServiceLogo service="lambda" />
     </template>
     <template #heading>Serverless REST API</template>
 
@@ -37,7 +33,7 @@ import SupportIcon from './icons/IconSupport.vue'
 
   <WelcomeItem>
     <template #icon>
-      <EcosystemIcon />
+      <ServiceLogo service="dynamodb" />
     </template>
     <template #heading>DynamoDB Integration</template>
 
@@ -50,7 +46,7 @@ import SupportIcon from './icons/IconSupport.vue'
 
   <WelcomeItem>
     <template #icon>
-      <CommunityIcon />
+      <ServiceLogo service="s3" />
     </template>
     <template #heading>S3 & CloudFront Hosting</template>
 
@@ -64,7 +60,7 @@ import SupportIcon from './icons/IconSupport.vue'
 
   <WelcomeItem>
     <template #icon>
-      <SupportIcon />
+      <ServiceLogo service="infrastructure" />
     </template>
     <template #heading>Infrastructure as Code</template>
 

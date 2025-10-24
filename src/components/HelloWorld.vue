@@ -11,9 +11,9 @@ defineProps({
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      A full-stack serverless application built with
+      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a> and
+      <a href="https://docs.amplify.aws/" target="_blank" rel="noopener">AWS Amplify Gen 2</a>.
     </h3>
   </div>
 </template>

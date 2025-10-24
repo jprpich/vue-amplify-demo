@@ -1,6 +1,6 @@
-# vue-amplify-demo
+# Vue on Amplify
 
-A Vue 3 application with AWS Amplify REST API backend.
+A modern full-stack application built with Vue 3 and AWS Amplify Gen 2.
 
 ## 🚀 Features
 
