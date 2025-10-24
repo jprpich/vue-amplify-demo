@@ -10,11 +10,7 @@ defineProps({
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <h3>
-      A full-stack serverless application built with
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a> and
-      <a href="https://docs.amplify.aws/" target="_blank" rel="noopener">AWS Amplify Gen 2</a>.
-    </h3>
+    <h3>A full-stack serverless application built with Vue 3 and AWS Amplify Gen 2.</h3>
   </div>
 </template>
 
