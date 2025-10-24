@@ -6,16 +6,6 @@ const apiResponse = ref(null)
 const loading = ref(false)
 const error = ref(null)
 
-// Contact form state
-const contactForm = ref({
-  name: '',
-  email: '',
-  message: '',
-})
-const contactLoading = ref(false)
-const contactError = ref(null)
-const contactSuccess = ref(null)
-
 const callApi = async () => {
   loading.value = true
   error.value = null
@@ -63,58 +53,6 @@ const callApi = async () => {
     loading.value = false
   }
 }
-
-const submitContact = async () => {
-  contactLoading.value = true
-  contactError.value = null
-  contactSuccess.value = null
-
-  try {
-    // Get API endpoint
-    const response = await fetch('/amplify_outputs.json')
-    if (!response.ok) {
-      throw new Error('API configuration not found. Make sure sandbox is running.')
-    }
-    const outputs = await response.json()
-    const apiEndpoint = outputs?.custom?.API?.endpoint
-
-    if (!apiEndpoint) {
-      throw new Error('API endpoint not found in configuration.')
-    }
-
-    console.log('Submitting contact form to:', apiEndpoint)
-
-    // Submit contact form
-    const contactResponse = await fetch(`${apiEndpoint}contact`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: contactForm.value.name,
-        email: contactForm.value.email,
-        message: contactForm.value.message,
-      }),
-    })
-
-    const data = await contactResponse.json()
-
-    if (!contactResponse.ok) {
-      throw new Error(data.error || 'Failed to submit contact form')
-    }
-
-    contactSuccess.value = data
-    // Clear form on success
-    contactForm.value.name = ''
-    contactForm.value.email = ''
-    contactForm.value.message = ''
-  } catch (err) {
-    contactError.value = err.message || 'Failed to submit contact form'
-    console.error('Error submitting contact form:', err)
-  } finally {
-    contactLoading.value = false
-  }
-}
 </script>
 
 <template>
@@ -136,58 +74,11 @@ const submitContact = async () => {
         <pre>{{ JSON.stringify(apiResponse, null, 2) }}</pre>
       </div>
     </div>
-
-    <!-- Contact Form -->
-    <div class="contact-demo">
-      <h2>📬 Test Contact Form (POST Request)</h2>
-      <p>Submit a message to test the POST /contact endpoint</p>
-
-      <form @submit.prevent="submitContact" class="contact-form">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input
-            id="name"
-            v-model="contactForm.name"
-            type="text"
-            placeholder="Enter your name"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email (optional):</label>
-          <input id="email" v-model="contactForm.email" type="email" placeholder="your@email.com" />
-        </div>
-
-        <div class="form-group">
-          <label for="message">Message:</label>
-          <textarea
-            id="message"
-            v-model="contactForm.message"
-            placeholder="Enter your message"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-
-        <button type="submit" :disabled="contactLoading" class="submit-button">
-          {{ contactLoading ? 'Sending...' : 'Send Message' }}
-        </button>
-      </form>
-
-      <div v-if="contactError" class="error">❌ Error: {{ contactError }}</div>
-
-      <div v-if="contactSuccess" class="success">
-        <h3>✅ Success!</h3>
-        <pre>{{ JSON.stringify(contactSuccess, null, 2) }}</pre>
-      </div>
-    </div>
   </main>
 </template>
 
 <style scoped>
-.api-demo,
-.contact-demo {
+.api-demo {
   max-width: 600px;
   margin: 3rem auto;
   padding: 2rem;
@@ -196,8 +87,7 @@ const submitContact = async () => {
   text-align: center;
 }
 
-.api-button,
-.submit-button {
+.api-button {
   background: #00dc82;
   color: white;
   border: none;
@@ -209,55 +99,14 @@ const submitContact = async () => {
   transition: all 0.3s ease;
 }
 
-.api-button:hover:not(:disabled),
-.submit-button:hover:not(:disabled) {
+.api-button:hover:not(:disabled) {
   background: #00bd6f;
   transform: translateY(-2px);
 }
 
-.api-button:disabled,
-.submit-button:disabled {
+.api-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-.contact-form {
-  margin-top: 1.5rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-  text-align: left;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: var(--color-text);
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  font-size: 16px;
-  font-family: inherit;
-  background: var(--color-background);
-  color: var(--color-text);
-  transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #00dc82;
-}
-
-.form-group textarea {
-  resize: vertical;
 }
 
 .error {
